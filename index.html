@@ -1,1 +1,132 @@
-hasil
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Render Dataset Multi Elemen</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+    ul {
+      background: #fff;
+      padding: 15px;
+    }
+    .card {
+      background: #fff;
+      padding: 10px;
+      margin: 5px 0;
+      border-left: 5px solid #007BFF;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Implementasi Dataset ke Banyak Elemen</h1>
+
+  <!-- TABEL 1 -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nama</th>
+      </tr>
+    </thead>
+    <tbody id="table1"></tbody>
+  </table>
+
+  <!-- TABEL 2 -->
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama User</th>
+      </tr>
+    </thead>
+    <tbody id="table2"></tbody>
+  </table>
+
+  <!-- LIST (UL/LI) -->
+  <ul id="list"></ul>
+
+  <!-- DIV / CARD -->
+  <div id="cards"></div>
+
+  <script>
+    // DATASET (ARRAY)
+    const users = [
+      { id: 1, nama: "User 1" },
+      { id: 2, nama: "User 2" },
+      { id: 3, nama: "User 3" },
+      { id: 4, nama: "User 4" }
+    ];
+
+    // =====================
+    // TABEL 1
+    // =====================
+    const table1 = document.getElementById("table1");
+    users.forEach(user => {
+      table1.innerHTML += `
+        <tr>
+          <td>${user.id}</td>
+          <td>${user.nama}</td>
+        </tr>
+      `;
+    });
+
+    // =====================
+    // TABEL 2 (reuse dataset)
+    // =====================
+    const table2 = document.getElementById("table2");
+    users.forEach((user, index) => {
+      table2.innerHTML += `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${user.nama}</td>
+        </tr>
+      `;
+    });
+
+    // =====================
+    // LIST UL > LI
+    // =====================
+    const list = document.getElementById("list");
+    users.forEach(user => {
+      list.innerHTML += `<li>${user.id} - ${user.nama}</li>`;
+    });
+
+    // =====================
+    // DIV / CARD
+    // =====================
+    const cards = document.getElementById("cards");
+    users.forEach(user => {
+      cards.innerHTML += `
+        <div class="card">
+          <strong>ID:</strong> ${user.id} <br>
+          <strong>Nama:</strong> ${user.nama}
+        </div>
+      `;
+    });
+  </script>
+
+</body>
+</html>
